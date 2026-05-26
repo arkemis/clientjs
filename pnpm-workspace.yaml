@@ -3,3 +3,7 @@ packages:
   - "packages/*"
 minimumReleaseAge: 1440 # 1 day
 blockExoticSubdeps: true
+allowBuilds:
+  contentlayer: true
+  esbuild: true
+  protobufjs: true
