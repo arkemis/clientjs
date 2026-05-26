@@ -6,6 +6,11 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
@@ -14,22 +19,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          persist-credentials: false
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9.4.0
-      - name: Setup Node.js 18
-        uses: actions/setup-node@v3
+          version: 11.3.0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v6
         with:
-          node-version: 18
+          node-version: 22
+          package-manager-cache: false
+          registry-url: "https://registry.npmjs.org"
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
       - name: Build package
         run: pnpm build --filter=@arkejs/client
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
@@ -40,9 +51,8 @@ jobs:
           publish: npx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   docs:
     name: Publish docs
     needs: Release
     if: needs.release.outputs.published == 'true'
-    uses: './.github/workflows/docs.yml'
+    uses: "./.github/workflows/docs.yml"
