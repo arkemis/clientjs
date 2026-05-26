@@ -8,7 +8,7 @@
   "scripts": {
     "build": "pnpm clean && tsup",
     "clean": "rm -rf dist",
-    "test": "jest --coverage --silent",
+    "test": "NODE_OPTIONS=--no-experimental-webstorage jest --coverage --silent",
     "pub:beta": "pnpm build && pnpm publish --no-git-checks --access public --tag beta",
     "pub:release": "pnpm build && pnpm publish --access public"
   },
@@ -19,7 +19,7 @@
   "author": "Arkemis S.r.l.",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "1.7.7"
+    "axios": "1.16.1"
   },
   "repository": {
     "type": "git",
