@@ -1,5 +1,11 @@
 # @arkejs/client
 
+## 2.11.2
+
+### Patch Changes
+
+- 5fd44c4: Updated axios to latest version to fix known vulnerabilities
+
 ## 2.11.1
 
 ### Patch Changes
