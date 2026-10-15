@@ -123,7 +123,9 @@ describe("Client", () => {
       status: HTTPStatusCode.NoContent,
     });
 
-    await client.arke.delete(ARKE_ID);
+    const res = await client.arke.delete(ARKE_ID);
+    const status: number = res.status;
+    expect(status).toBe(HTTPStatusCode.NoContent);
     expect(mockAxios.delete).toHaveBeenCalledWith(
       `/arke/unit/${ARKE_ID}`,
       undefined,
