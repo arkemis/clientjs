@@ -35,4 +35,8 @@ enum LinkDirection {
   Parent = "parent",
 }
 
+/** The arke or group a link parameter points to (`link_ref` in a struct). */
+type TLinkRef = { id: string; arke_id: "arke" | "group" };
+
 export { LinkDirection };
+export type { TLinkRef };
