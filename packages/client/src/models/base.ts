@@ -105,7 +105,7 @@ export default class Base {
    * Deletes an Arke
    */
   delete<T = TUnit>(id: string, config?: TRequestConfig): Promise<T> {
-    return this.httpClient.delete(`/${this.arke}/unit/${id}`, config);
+    return this.httpClient.delete(`/${this.arke}/unit/${id}`, config) as Promise<T>;
   }
 
   /**
