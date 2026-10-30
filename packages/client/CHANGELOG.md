@@ -1,5 +1,11 @@
 # @arkejs/client
 
+## 2.12.0
+
+### Minor Changes
+
+- 7266649: Updated axios to 1.20.0 to fix known vulnerabilities
+
 ## 2.11.2
 
 ### Patch Changes
